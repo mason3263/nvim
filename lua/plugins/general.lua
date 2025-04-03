@@ -1,4 +1,10 @@
-return {
-  "nathanaelkane/vim-indent-guides",
-  "romainl/vim-cool",
-}
+local plugins = {}
+
+table.insert(plugins, {
+  "echasnovski/mini.files",
+  config = function()
+    require('mini.files').setup()
+  end
+})
+
+return plugins

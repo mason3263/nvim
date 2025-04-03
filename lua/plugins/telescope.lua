@@ -18,14 +18,15 @@ function config_telescope()
     vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 end
 
-
 return {
   "nvim-telescope/telescope.nvim",
   dependencies = { 
     "nvim-telescope/telescope-fzf-native.nvim",
-    build = "make",
+    build = make_command,
     config = function()
-      require("telescope").load_extension("fzf")
+      if vim.loop.os_uname().sysname == "Linux" then
+        require("telescope").load_extension("fzf")
+      end
     end
   },
   config = config_telescope

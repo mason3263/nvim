@@ -9,7 +9,7 @@ function require_dir(dir)
       require(file)
     end
   else
-    for file in io.popen("dir /B "..nvim_conf.."\\lua\\"..dir) do
+    for file in io.popen("dir /B "..nvim_conf.."\\lua\\"..dir):lines() do
       file = string.sub(file, 0, -5)
       require(dir.."."..file)
     end
@@ -20,3 +20,9 @@ end
 -- require("config.settings")
 
 require_dir("config")
+
+if vim.loop.os_uname().sysname == "Linux" then
+  vim.g.terminal_emulator='bash'
+else
+  vim.g.terminal_emulator='powershell'
+end
