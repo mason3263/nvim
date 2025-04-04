@@ -26,3 +26,7 @@ if vim.loop.os_uname().sysname == "Linux" then
 else
   vim.g.terminal_emulator='powershell'
 end
+
+if io.open(vim.loop.cwd() .. "\\init.lua") then
+  require("init")
+end
